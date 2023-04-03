@@ -155,6 +155,22 @@ const prepareNewWord = async () => {
     return newWord;
 }
 
+function compareWords(word1, word2) {
+    let result = '';
+    for (let i = 0; i < word1.length; i++) {
+      let char1 = word1[i];
+      let char2 = word2[i];
+      if (char1 === char2) {
+        result += char1.toUpperCase();
+      } else if (word1.indexOf(char2) !== -1) {
+        result += char2.toLowerCase();
+      } else {
+        result += '.';
+      }
+    }
+    return result;
+  }
+
 const letsPlay = async () => {
     // let newWord = await prepareNewWord();
     let newWord = 'MORDRE';
@@ -167,7 +183,7 @@ const letsPlay = async () => {
     // console.log(listOfWordsToTry);
     for (let wordToTry of listOfWordsToTry) {
         // console.log("mot proposé : " + wordToTry);
-        let answer = testWordTried(newWord, wordToTry);
+        let answer = compareWords(newWord, wordToTry);
         console.log(answer);
     }
 }
